@@ -25,8 +25,11 @@ class TasksController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-    @IBAction func addTask(_ sender: UIBarButtonItem) {
-        
+    @IBAction func addTask() {
+        present(addTaskController(), animated: true, completion: nil)
+    }
+    
+    func addTaskController() -> UIAlertController {
         let alertController = UIAlertController(title: "Add Task", message: nil, preferredStyle: .alert)
         
         let addAction = UIAlertAction(title: "Add", style: .default) {_ in
@@ -50,7 +53,7 @@ class TasksController: UITableViewController {
         alertController.addAction(addAction);
         alertController.addAction(cancelAction);
         
-        present(alertController, animated: true, completion: nil)
+        return alertController
     }
     
     @objc private func handleTextChanged(_ sender: UITextField) {

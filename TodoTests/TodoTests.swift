@@ -27,4 +27,34 @@ class TodoTests: XCTestCase {
         let user = User(id: 2, name: "Blobby", bio: "Blobbed around the world.")
         assertSnapshot(matching: user, as: .dump)
     }
+    
+    func testController() {
+        let taskStore = TaskStore()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TasksController") as! TasksController
+        vc.taskStore = taskStore
+        
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        vc.insert(task: Task(name: "test2"))
+        vc.insert(task: Task(name: "test3"))
+        vc.move(indexPath: IndexPath(row: 0, section: 0))
+        vc.delete(indexPath: IndexPath(row: 0, section: 0))
+        
+        assertSnapshot(matching: vc, as: .recursiveDescription)
+    }
+    
+    func testControllerAdd() {
+        let taskStore = TaskStore()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TasksController") as! TasksController
+        vc.taskStore = taskStore
+        
+        let addTaskVc = vc.addTaskController()
+        addTaskVc.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        assertSnapshot(matching: vc.addTaskController(), as: .recursiveDescription)
+    }
 }
