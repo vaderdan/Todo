@@ -8,18 +8,38 @@
 
 import Foundation
 
+struct TaskDiff {
+    var insert: [IndexPath]
+    var delete: [IndexPath]
+}
+
 class TaskStore {
     var tasks = [[Task](), [Task]()]
     
-    func add(_ task: Task, at index: Int, isDone: Bool = false) {
-        let section = isDone ? 1 : 0
+    func insert(_ task: Task) -> IndexPath {
+        let section = (task.isDone ?? false) ? 1 : 0
+        let row = 0
         
-        tasks[section].insert(task, at: index)
+        tasks[section].insert(task, at: row)
+        
+        return IndexPath(row: row, section: section)
     }
     
-    @discardableResult func removeTask(at index: Int, isDone: Bool = false) -> Task {
-        let section = isDone ? 1 : 0
+    @discardableResult func deleteTask(indexPath: IndexPath) -> IndexPath {
+        tasks[indexPath.section].remove(at: indexPath.row)
+        return indexPath
+    }
+    
+    func moveTask(indexPath: IndexPath) -> TaskDiff {
+        let isDone = indexPath.section == 1
         
-        return tasks[section].remove(at: index)
+        
+        let oldTask = tasks[indexPath.section][indexPath.row]
+        oldTask.isDone = !isDone
+        
+        let deleteIndex = deleteTask(indexPath: indexPath)
+        let insertIndex = insert(oldTask)
+        
+        return TaskDiff(insert: [insertIndex], delete: [deleteIndex])
     }
 }

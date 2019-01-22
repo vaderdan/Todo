@@ -35,10 +35,7 @@ class TasksController: UITableViewController {
             
             let newTask = Task(name: name)
             
-            self.taskStore.add(newTask, at: 0)
-            
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
+            self.insert(task: newTask)
         }
         
         addAction.isEnabled = false
@@ -64,6 +61,27 @@ class TasksController: UITableViewController {
               else { return }
         
         addAction.isEnabled = !text.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+    
+    func insert(task: Task) {
+        let indexPath = taskStore.insert(task)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
+    func delete(indexPath: IndexPath) {
+        taskStore.deleteTask(indexPath: indexPath)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+    
+    func move(indexPath: IndexPath) {
+        tableView.beginUpdates()
+        
+        let diff = taskStore.moveTask(indexPath: indexPath)
+        
+        tableView.deleteRows(at: diff.delete, with: .automatic)
+        tableView.insertRows(at: diff.insert, with: .automatic)
+        
+        tableView.endUpdates()
     }
 }
 
@@ -102,11 +120,7 @@ extension TasksController {
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {(action, sourceView, completionHandler) in
             
-            guard let isDone = self.taskStore.tasks[indexPath.section][indexPath.row].isDone else { return }
-            
-            self.taskStore.removeTask(at: indexPath.row, isDone: isDone)
-            
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.delete(indexPath: indexPath)
             
             completionHandler(true)
         }
@@ -121,16 +135,7 @@ extension TasksController {
         
         let doneAction = UIContextualAction(style: .normal, title: nil) {(action, sourceView, completionHandler) in
             
-            self.taskStore.tasks[0][indexPath.row].isDone = true
-            
-            let doneTask = self.taskStore.removeTask(at: indexPath.row)
-            
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            self.taskStore.add(doneTask, at: 0, isDone: true)
-            
-            let indexPath = IndexPath(row: 0, section: 1)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            self.move(indexPath: indexPath)
             
             completionHandler(true)
         }
