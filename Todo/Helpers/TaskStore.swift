@@ -21,7 +21,7 @@ struct TaskInfo {
 class TaskStore {
     var tasks = [[Task](), [Task]()]
     
-    func insert(_ task: Task) -> IndexPath {
+    @discardableResult func insert(_ task: Task) -> IndexPath {
         let section = (task.isDone ?? false) ? 1 : 0
         let row = 0
         
@@ -35,7 +35,7 @@ class TaskStore {
         return indexPath
     }
     
-    func moveTask(indexPath: IndexPath) -> TaskDiff {
+    @discardableResult func moveTask(indexPath: IndexPath) -> TaskDiff {
         let isDone = indexPath.section == 1
         
         

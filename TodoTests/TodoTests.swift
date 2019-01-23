@@ -57,4 +57,20 @@ class TodoTests: XCTestCase {
         
         assertSnapshot(matching: vc.addTaskController(), as: .recursiveDescription)
     }
+    
+    func testControllerStats() {
+        let taskStore = TaskStore()
+        taskStore.insert(Task(name: "task1"))
+        taskStore.insert(Task(name: "task2"))
+        taskStore.insert(Task(name: "task3"))
+        taskStore.moveTask(indexPath: IndexPath(row: 0, section: 0))
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: "StatsController") as! StatsController
+        vc.taskStore = taskStore
+        
+        vc.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        assertSnapshot(matching: vc, as: .image)
+    }
 }

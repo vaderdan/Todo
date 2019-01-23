@@ -55,7 +55,7 @@
         <!--Stats-->
         <scene sceneID="hnx-F5-RyJ">
             <objects>
-                <viewController title="Stats" id="EOz-iw-fTs" customClass="StatsController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatsController" title="Stats" id="EOz-iw-fTs" customClass="StatsController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tfx-op-v43">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
