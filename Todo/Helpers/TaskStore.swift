@@ -13,6 +13,11 @@ struct TaskDiff {
     var delete: [IndexPath]
 }
 
+struct TaskInfo {
+    var todo: [Task]
+    var done: [Task]
+}
+
 class TaskStore {
     var tasks = [[Task](), [Task]()]
     
@@ -41,5 +46,9 @@ class TaskStore {
         let insertIndex = insert(oldTask)
         
         return TaskDiff(insert: [insertIndex], delete: [deleteIndex])
+    }
+    
+    func info() -> TaskInfo {
+        return TaskInfo(todo: tasks[0], done: tasks[1])
     }
 }

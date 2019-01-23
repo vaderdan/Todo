@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300573E921F8A5B500514D15 /* StatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300573E821F8A5B500514D15 /* StatsController.swift */; };
+		300573EA21F8A60800514D15 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300573E621F8A59200514D15 /* Charts.framework */; };
+		300573EB21F8A60800514D15 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 300573E621F8A59200514D15 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		30B3B01821F76C9F00243E0C /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B3B01721F76C9F00243E0C /* TodoTests.swift */; };
 		30B3B01D21F7723400243E0C /* SnapshotTesting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B3B01C21F7723400243E0C /* SnapshotTesting.framework */; };
 		EC556544214D78A8003383B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC556543214D78A8003383B8 /* AppDelegate.swift */; };
@@ -29,7 +32,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		300573EC21F8A60800514D15 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				300573EB21F8A60800514D15 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		300573E621F8A59200514D15 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
+		300573E821F8A5B500514D15 /* StatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsController.swift; sourceTree = "<group>"; };
 		30B3B00D21F76C7A00243E0C /* TodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B3B01121F76C7A00243E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30B3B01721F76C9F00243E0C /* TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
@@ -59,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300573EA21F8A60800514D15 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +97,7 @@
 		30B3B01B21F7723400243E0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300573E621F8A59200514D15 /* Charts.framework */,
 				30B3B01C21F7723400243E0C /* SnapshotTesting.framework */,
 			);
 			name = Frameworks;
@@ -117,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EC556555214D81CD003383B8 /* TasksController.swift */,
+				300573E821F8A5B500514D15 /* StatsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -177,6 +199,7 @@
 				EC55653C214D78A8003383B8 /* Sources */,
 				EC55653D214D78A8003383B8 /* Frameworks */,
 				EC55653E214D78A8003383B8 /* Resources */,
+				300573EC21F8A60800514D15 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -260,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC556556214D81CD003383B8 /* TasksController.swift in Sources */,
+				300573E921F8A5B500514D15 /* StatsController.swift in Sources */,
 				EC556558214D92A9003383B8 /* Task.swift in Sources */,
 				EC55655A214D9319003383B8 /* TaskStore.swift in Sources */,
 				EC556560214DBA34003383B8 /* TasksUtility.swift in Sources */,

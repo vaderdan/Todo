@@ -1,1 +1,2 @@
+github "danielgindi/Charts" "v3.2.1"
 github "pointfreeco/swift-snapshot-testing" "1.1.0"

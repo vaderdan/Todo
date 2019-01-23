@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        taskStore.tasks = [todoTasks, doneTasks]
         
+        taskStore.tasks = TasksUtility.fetch() ?? [[Task](), [Task]()]
+        
         let taskController = window?.rootViewController?.childViewControllers.first as? TasksController
         taskController?.taskStore = taskStore
         

@@ -12,8 +12,6 @@ class TasksController: UITableViewController {
     
     var taskStore: TaskStore! {
         didSet {
-            taskStore.tasks = TasksUtility.fetch() ?? [[Task](), [Task]()]
-            
             tableView.reloadData()
         }
     }
@@ -149,4 +147,12 @@ extension TasksController {
         return indexPath.section == 0 ? UISwipeActionsConfiguration(actions: [doneAction]) : nil
     }
     
+}
+
+extension TasksController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? StatsController {
+            vc.taskStore = taskStore
+        }
+    }
 }
